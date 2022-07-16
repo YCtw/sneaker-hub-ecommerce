@@ -52,7 +52,7 @@ class Products(db.Model):
     image_url = db.Column(db.Text, nullable=False)
     category = db.Column(db.String(250), nullable=False)
 
-# db.create_all()
+db.create_all()
 
 #Member TABLE
 class Members(UserMixin, db.Model):
@@ -65,7 +65,7 @@ class Members(UserMixin, db.Model):
     phone = db.Column(db.Text, nullable=False)
     address = db.Column(db.Text, nullable=False)
 
-# db.create_all()
+db.create_all()
 
 #Cart Table - contain all memebers' checkout which not ye been checkout
 class Carts(db.Model):
@@ -79,7 +79,7 @@ class Carts(db.Model):
     product_count = db.Column(db.Integer, nullable=False)
     product_image_url = db.Column(db.Text, nullable=False)
 
-# db.create_all()
+db.create_all()
 
 #Order Table - Confirmation, contain all orders' info
 class Orders(db.Model):
@@ -93,7 +93,7 @@ class Orders(db.Model):
     buyer_address = db.Column(db.Integer, nullable=False)
     order_note = db.Column(db.Text)
 
-# db.create_all()
+db.create_all()
 
 #Bulding form for login
 class LoginForm(FlaskForm):
