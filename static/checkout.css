@@ -1,0 +1,300 @@
+body {
+  text-align: center;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.first-nav {
+  height: 86px;
+}
+
+.brand-image {
+  height: 45px;
+  width: 45px;
+}
+
+.brand {
+  color: black;
+  font-family: 'Gentium Book Plus', serif;
+  font-size: 25px;
+  position: relative;
+  top: 10px;
+  margin-left: 5px;
+}
+
+.top-right-function {
+  margin-top: 5px;
+}
+
+
+.Contact-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.register-image {
+  margin-right:5px;
+}
+
+.Register-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.logout-image {
+  margin-right:5px;
+}
+
+.Logout-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.Cart-header {
+  color:black;
+}
+
+.cart-image {
+  margin-right:5px;
+}
+
+hr {
+  border-bottom: 2px solid black;
+}
+
+.checkout-flow {
+  width: 575px;
+  margin-top:29px;
+  position: relative;
+  left: 23px;
+}
+
+.checkout-info {
+  padding-left: 20px;
+}
+
+.checkout-header {
+  text-align: left;
+  margin-top:40px;
+}
+
+.checkout-form {
+  text-align: left;
+  margin-top: 60px;
+}
+
+.phone-checkout {
+  margin-top: 30px;
+}
+
+.email-checkout {
+  margin-top: 30px;
+}
+
+.address-checkout {
+  margin-top: 30px;
+}
+
+.billing-header {
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+
+.credit-card-payment {
+  padding-left:0;
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+
+#credit-form {
+  display: none;
+}
+
+.card_number_label {
+  font-size: 10px;
+}
+
+.card_number_input {
+  position: relative;
+  left: 15px;
+  height: 20px
+}
+
+.card_expired_label {
+  font-size: 10px;
+}
+
+.card_expired_input {
+  position: relative;
+  left: 19.5px;
+  height: 20px
+}
+
+.card_security_label {
+  font-size: 10px;
+}
+
+.card_security_input {
+  position: relative;
+  left: 13px;
+  height: 20px
+}
+
+#Cash {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top:2px;
+  left: 56px;
+}
+
+#Credit-Card {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top:2px;
+  left: 6px;
+}
+
+.checkout-info-hr {
+  border-bottom: 2px solid black;
+  margin-top: 40px;
+}
+
+.message-header {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+#cke_message {
+  position:relative;
+  right:5px;
+}
+
+.confirm-btn {
+  width: 120px;
+}
+
+.checkout-summary {
+  text-align: left;
+  margin-top:40px;
+  padding-left: 90px;
+}
+
+.checkout-summary-header {
+  text-align: left;
+}
+
+.first-checkout-table {
+  margin-top: 60px;
+}
+
+.checkout-table {
+  margin-top: 35px;
+}
+
+
+.checkout-image {
+  width: 180px;
+}
+
+.checkout-description {
+  position: relative;
+  left: 45px;
+  bottom: 45px;
+}
+
+
+.checkout-item {
+  color: #808080;
+  font-size: 15px;
+}
+
+.checkout-size {
+  color: #808080;
+  font-size: 15px;
+}
+
+.checkout-number {
+  color: #808080;
+  font-size: 15px;
+}
+
+.checkout-price  {
+  color: #808080;
+  font-size: 15px;
+}
+
+.checkout-sum-hr {
+  border-bottom: 2px solid black;
+  margin-top: 50px;
+}
+
+.total-summary {
+  text-align: left;
+  margin-top:40px;
+}
+
+.amount-table {
+  font-size: 18px;
+  margin-top: 25px;
+}
+
+.first-row {
+  position: relative;
+  top: 10px;
+}
+
+.item-tag {
+  margin-right: 135px;
+}
+
+.shippment-tag {
+  margin-right: 80px;
+}
+
+.checkout-sum-tag {
+  margin-right: 137px;
+}
+
+.error-msg {
+  color: red;
+  margin-top: 5px;
+}
+
+.bottom-hr {
+  margin-top: 65px;
+}
+
+.contact1 {
+  color: #808080;
+  margin-bottom: 10px;
+}
+
+.copyright {
+  color: #808080;
+}
+
+.twitter-img {
+  text-decoration: none;
+}
+
+.instagram-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.facebook-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.youtube-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.copyright {
+  margin-top: 30px;
+  font-size: 15px;
+}

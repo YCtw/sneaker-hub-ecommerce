@@ -1,0 +1,343 @@
+body {
+  text-align: center;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.first-nav {
+  height: 86px;
+}
+
+.brand-image {
+  height: 45px;
+  width: 45px;
+}
+
+.brand {
+  color: black;
+  font-family: 'Gentium Book Plus', serif;
+  font-size: 25px;
+  position: relative;
+  top: 10px;
+  margin-left: 5px;
+}
+
+.top-right-function {
+  margin-top: 5px;
+}
+
+
+.Contact-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.register-image {
+  margin-right:5px;
+}
+
+.Register-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.login-image {
+  margin-right:5px;
+}
+
+.Login-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.logout-image {
+  margin-right:5px;
+}
+
+.Logout-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.Cart-header {
+  color:black;
+}
+
+.cart-image {
+  margin-right:5px;
+}
+
+.second-back {
+  height: 487px;
+}
+
+.third-back {
+  height: 487px;
+}
+
+.item-nav {
+  margin-right: 200px;
+}
+
+.jordan-item {
+  margin-right: 15px;
+}
+
+.jordan-image-link {
+  text-decoration: none;
+}
+
+.jordan-image {
+  width: 90px;
+  height: 90px;
+}
+
+.jordan-image-link {
+  text-decoration: none;
+}
+
+.jordan-tag {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.nike-item {
+  margin-right: 25px;
+}
+
+.nike-image-link {
+  text-decoration: none;
+}
+
+.nike-image {
+  width: 90px;
+  height: 90px;
+}
+.nike-tag {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.adidas-item {
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+.adidas-image-link {
+  text-decoration: none;
+}
+
+.adidas-image {
+  width: 75px;
+  height: 55px;
+  margin-right: 10px;
+}
+.adidas-tag {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.converse-item {
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
+.converse-image-link {
+  text-decoration: none;
+}
+
+.converse-image {
+  width: 90px;
+  height: 60px;
+  margin-right: 5px;
+}
+.converse-tag {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.vans-image-link {
+  text-decoration: none;
+}
+
+.vans-image {
+  width: 100px;
+  height: 100px;
+  margin-right: 5px;
+}
+.vans-tag {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+  position: relative;
+  bottom: 10px;
+}
+
+.bestseller-tag {
+  text-align: left;
+  font-size: 20px;
+}
+
+.best-row {
+  margin-bottom: 20px;
+}
+
+.best1 {
+  height: 220px;
+  width: 195px;
+}
+.best1-tag {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.best2 {
+  height: 220px;
+  width: 195px;
+}
+.best2-tag {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.best3 {
+  height: 220px;
+  width: 195px;
+}
+.best3-tag {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.stock-tag {
+  text-align: left;
+  font-size: 20px;
+}
+
+hr {
+  border-bottom: 2px solid black;
+}
+
+.item1-img {
+  height: 220px;
+  width: 195px;
+}
+.item1-tag {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.item2-img {
+  height: 220px;
+  width: 195px;
+}
+.item2-tag {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.item3-img {
+  height: 220px;
+  width: 195px;
+}
+.item3-tag {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.item4-img {
+  height: 220px;
+  width: 195px;
+}
+.item4-tag {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.item5-img {
+  height: 220px;
+  width: 195px;
+}
+.item5-tag {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.item6-img {
+  height: 220px;
+  width: 195px;
+}
+.item6-tag {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.item7-img {
+  height: 220px;
+  width: 195px;
+}
+.item7-tag {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.item8-img {
+  height: 220px;
+  width: 195px;
+}
+.item8-tag {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.bottom-hr {
+  margin-top: 65px;
+}
+
+.contact1 {
+  color: #808080;
+  margin-bottom: 10px;
+}
+
+.copyright {
+  color: #808080;
+}
+
+.twitter-img {
+  text-decoration: none;
+}
+
+.instagram-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.facebook-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.youtube-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.copyright {
+  margin-top: 30px;
+  font-size: 15px;
+}

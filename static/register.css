@@ -1,0 +1,175 @@
+body {
+  text-align: center;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.first-nav {
+  height: 86px;
+}
+
+.brand-image {
+  height: 45px;
+  width: 45px;
+}
+
+.brand {
+  color: black;
+  font-family: 'Gentium Book Plus', serif;
+  font-size: 25px;
+  position: relative;
+  top: 10px;
+  margin-left: 5px;
+}
+
+.top-right-function {
+  margin-top: 5px;
+}
+
+
+.Contact-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.register-image {
+  margin-right:5px;
+}
+
+.Register-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.login-image {
+  margin-right:5px;
+}
+
+.Login-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.Cart-header {
+  color:black;
+}
+
+.cart-image {
+  margin-right:5px;
+}
+
+hr {
+  border-bottom: 2px solid black;
+}
+
+.duplicate-email-msg {
+  position: relative;
+  right: 43px;
+  top: 5px;
+  color: red;
+}
+
+
+.bottom-hr {
+  margin-top: 95px;
+}
+
+.contact1 {
+  color: #808080;
+  margin-bottom: 10px;
+}
+
+.twitter-img {
+  text-decoration: none;
+}
+
+.instagram-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.facebook-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.youtube-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.copyright {
+  margin-top: 30px;
+  font-size: 15px;
+  color: #808080;
+}
+
+.register-header {
+  font-size: 30px;
+  margin-top: 80px;
+}
+
+.small-register {
+  font-family: 'Gentium Book Plus', serif;
+  color: #808080;
+  margin-top: 10px;
+}
+
+.email-input {
+  margin-top: 40px;
+  height: 32px;
+}
+
+.password-input {
+  margin-top: 20px;
+  height: 32px;
+}
+
+.first_name {
+  margin-top: 20px;
+}
+
+.last_name {
+  margin-top: 20px;
+  margin-left: 18px;
+}
+
+.phone-input {
+  margin-top: 10px
+}
+
+.address-input {
+  margin-top: 20px;
+}
+
+.error-msg {
+  color: red;
+  margin-top: 7px;
+  position: relative;
+  right: 91px;
+}
+
+.first_error-msg {
+  color: red;
+  position: relative;
+  right: 8px;
+  top: 6px;
+
+}
+
+.last_error-msg {
+  color: red;
+  position: relative;
+  left: 9px;
+  top: 6px;
+}
+
+.birthday {
+  margin-top: 20px;
+  width: 343px;
+}
+
+.submit-btn {
+  margin-top: 40px;
+  width: 343px;
+}

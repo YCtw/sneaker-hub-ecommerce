@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Product Item</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/product.css">
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <!-- Script for quantity -->
+  <script>
+    $(function() {
+      var t = $("#quantity");
+      $("#add").click(function() {
+        t.val(parseInt(t.val()) + 1);
+        $("#min").removeAttr("disabled");
+        setTotal();
+      })
+      $("#min").click(function() {
+        if (parseInt(t.val()) > 1) {
+          t.val(parseInt(t.val()) - 1)
+        } else {
+          $("#min").attr("disabled", "disabled")
+        }
+        setTotal();
+      })
+
+      function setTotal() {
+        $("#total").html((parseInt(t.val()) * 3.95).toFixed(2));
+      }
+      setTotal();
+    })
+  </script>
+</head>
+
+
+<body>
+  <section class="top-nav">
+    <nav class="navbar navbar-expand-lg navbar-dark first-nav">
+      <a class="navbar-brand" href="{{url_for('homepage')}}">
+        <img src="/static/sneakers.png" alt="" width="30" height="24" class="d-inline-block align-text-top brand-image">
+        <span class="brand"><strong>Sneaker Hub</strong></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse top-right-function" id="navbarTogglerDemo01">
+        <ul class="navbar-nav ms-auto">
+          {% if not current_user.is_authenticated: %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('register', product_id=item.id)}}"><span class="Register-header"><img class="register-image" src="/static/edit.png" alt="register-image" width="18" height="18"><strong>Register</strong></span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('login', product_id=item.id)}}"><span class="Login-header"><img class="login-image" src="/static/user.png" alt="login-image" width="18" height="18"><strong>Login</strong></span></a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('logout', product_id=item.id)}}"><span class="Logout-header"><img class="logout-image" src="/static/logout.png" alt="logout-image" width="18" height="18"><strong>Logout</strong></span></a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('cart')}}"><span class="Cart-header"><img class="cart-image" src="/static/shopping-cart.png" alt="cart-image" width="18" height="18"><strong>Cart</strong></span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </section>
+
+  <hr />
+
+  <section class="product">
+    <div class="container">
+      <div class="row product-row">
+        <div class="col-6">
+          <img class="product-img" src={{item.image_url}} alt="item">
+        </div>
+        <div class="col-6" style="margin-top:5px; text-align: left;">
+          <h3 class="product-name"><strong>{{item.name}}</strong></h3>
+          <h5 class="product-price"><strong>${{item.price}}</strong></h5>
+
+          <form action="" method="post" class="purchase-form">
+
+            <label for="size" class="product-size"><strong>Size: </strong></label>
+            <select id="size" class="size" name="size">
+              <option value="US7 / 25CM" class="size-tag">US7 / 25CM</option>
+              <option value="US7.5 / 25.5CM" class="size-tag">US7.5 / 25.5CM</option>
+              <option value="US8 / 26CM" class="size-tag">US8 / 26CM</option>
+              <option value="US8.5 / 26.5CM" class="size-tag">US8.5 / 26.5CM</option>
+              <option value="US9 / 27CM" class="size-tag">US9 / 27CM</option>
+              <option value="US9.5 / 27.5CM" class="size-tag">US9.5 / 27.5CM</option>
+              <option value="US10 / 28CM" class="size-tag">US10 / 28CM</option>
+              <option value="US10.5 / 28.5CM" class="size-tag">US10.5 / 28.5CM</option>
+              <option value="US11 / 29CM" class="size-tag">US11 / 29CM</option>
+              <option value="US11.5 / 29.5CM" class="size-tag">US11.5 / 29.5CM</option>
+              <option value="US12 / 30CM" class="size-tag">US12 / 30CM</option>
+            </select>
+            <br />
+            <div class="quantity-select">
+              <input id="min" name="" type="button" value="-" />
+              <input id="quantity" name="numbers" type="text" value="1" />
+              <input id="add" name="" type="button" value="+" />
+            </div>
+            <div class="submit-btn">
+              <input type="submit" value="Add To Cart" formaction="/cart" class="btn btn-outline-dark cart-btn">
+              <input type="submit" value="Buy" formaction="/checkout?purchase=direct" class="btn btn-danger buy-btn">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="bottom-hr" />
+
+  <section class="contact-us">
+    <p class="contact1">Contact Us</p>
+    <a class="twitter-img" href="https://twitter.com/home">
+      <img src="/static/twitter.png" alt="twitter-img" width="25" height="25">
+    </a>
+    <a class="instagram-img" href="https://www.instagram.com/">
+      <img src="/static/instagram.png" alt="instagram-img" width="25" height="25">
+    </a>
+    <a class="facebook-img" href="https://www.facebook.com/">
+      <img src="/static/facebook.png" alt="facebook-img" width="25" height="25">
+    </a>
+    <a href="https://youtube.com">
+      <img class="youtube-img" src="/static/youtube.png" alt="youtube-img" width="25" height="25">
+    </a>
+    <p class="copyright">© 2022 Sneaker Hub.</p>
+  </section>
+
+</body>
+
+</html>

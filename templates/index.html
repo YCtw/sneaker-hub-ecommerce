@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sneaker Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="./static/homepage.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <section class="top-nav">
+    <nav class="navbar navbar-expand-lg navbar-dark first-nav">
+      <a class="navbar-brand" href="{{url_for('homepage')}}">
+        <img src="./static/sneakers.png" alt="brand-image" width="30" height="24" class="d-inline-block align-text-top brand-image">
+        <span class="brand"><strong>Sneaker Hub</strong></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse top-right-function" id="navbarTogglerDemo01">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#contact"><span class="Contact-header"><strong>Contact us</strong></span></a>
+          </li>
+          {% if not current_user.is_authenticated: %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('register', product_id=0)}}"><span class="Register-header"><img class="register-image" src="./static/edit.png" alt="register-image" width="18" height="18"><strong>Register</strong></span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('login', product_id=0)}}"><span class="Login-header"><img class="login-image" src="./static/user.png" alt="login-image" width="18" height="18"><strong>Login</strong></span></a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('logout', product_id=0)}}"><span class="Logout-header"><img class="logout-image" src="./static/logout.png" alt="logout-image" width="18" height="18"><strong>Logout</strong></span></a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('cart')}}"><span class="Cart-header"><img class="cart-image" src="./static/shopping-cart.png" alt="cart-image" width="18" height="18"><strong>Cart</strong></span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </section>
+
+  <section class="top-background">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="./static/sneaker-bg.png" class="d-block w-100" alt="first-back">
+        </div>
+        <div class="carousel-item">
+          <img src="./static/sneaker-bg2.png" class="d-block w-100 second-back" alt="second-back">
+        </div>
+        <div class="carousel-item">
+          <img src="./static/sneaker-bg3.png" class="d-block w-100 third-back" alt="third-back">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="second-nav">
+    <nav class="navbar navbar-expand-lg navbar-dark item-nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item jordan-item">
+          <a href="#jordan" class="jordan-image-link">
+            <img src="./static/jordan.png" alt="Jordan" class="jordan-image" />
+          </a>
+          <a href="#jordan" class="jordan-tag"><strong>Jordan</strong></a>
+        </li>
+        <li class="nav-item nike-item">
+          <a href="#nike" class="nike-image-link">
+            <img src="./static/nike.png" alt="Nike" class="nike-image" />
+          </a>
+          <a href="#nike" class="nike-tag"><strong>Nike</strong></a>
+        </li>
+        <li class="nav-item adidas-item">
+          <a href="#adidas" class="adidas-image-link">
+            <img src="./static/adidas.png" alt="Adidas" class="adidas-image" />
+          </a>
+          <a href="#adidas" class="adidas-tag"><strong>Adidas</strong></a>
+        </li>
+        <li class="nav-item converse-item">
+          <a href="#converse" class="converse-image-link">
+            <img src="./static/converse.png" alt="Converse" class="converse-image" />
+          </a>
+          <a href="#converse" class="converse-tag"><strong>Converse</strong></a>
+        </li>
+        <li class="nav-item vans-item">
+          <a href="#converse" class="converse-image-link">
+            <img src="./static/vans.png" alt="Vans" class="vans-image" />
+          </a>
+          <a href="#vans" class="vans-tag"><strong>Vans</strong></a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+
+  <p class="bestseller-tag"><strong>Best Sellers</strong></p>
+  <hr />
+
+  <section class="bestseller-display">
+    <div class="container">
+      <div class="row best-row">
+        {%for best_shoe in best_shoes%}
+        <div class="col-2">
+          <a href="{{url_for('product', product_id=best_shoe.id)}}"><img class="best1" src="{{best_shoe.image_url}}" alt="best1"></a>
+          <a href="{{url_for('product', product_id=best_shoe.id)}}" class="best1-tag"><strong>{{best_shoe.name}}</strong></a>
+          <p class="best1-price"><strong>${{best_shoe.price}}</strong></p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <p class="stock-tag"><strong>In Stock</strong></p>
+  <hr />
+
+  <section class="product-display">
+    <div class="container">
+      <div class="row">
+        {%for normal_shoe in normal_shoes%}
+        <div class="col-2">
+          <a href="{{url_for('product', product_id=normal_shoe.id)}}"><img class="item1-img" src={{normal_shoe.image_url}} alt="item1"></a>
+          <a href="{{url_for('product', product_id=normal_shoe.id)}}" class="item1-tag"><strong>{{normal_shoe.name}}</strong></a>
+          <p class="item1-price"><strong>${{normal_shoe.price}}</strong></p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <hr class="bottom-hr"/>
+
+  <section class="contact-us" id="contact">
+    <p class="contact1">Contact Us</p>
+    <a class="twitter-img" href="https://twitter.com/home">
+      <img src="./static/twitter.png" alt="twitter-img" width="25" height="25">
+    </a>
+    <a class="instagram-img" href="https://www.instagram.com/">
+      <img src="./static/instagram.png" alt="instagram-img" width="25" height="25">
+    </a>
+    <a class="facebook-img" href="https://www.facebook.com/">
+      <img src="./static/facebook.png" alt="facebook-img" width="25" height="25">
+    </a>
+    <a href="https://youtube.com">
+      <img class="youtube-img" src="./static/youtube.png" alt="youtube-img" width="25" height="25">
+    </a>
+    <p class="copyright">© 2022 Sneaker Hub.</p>
+  </section>
+
+</body>
+
+</html>

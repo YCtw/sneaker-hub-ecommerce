@@ -1,0 +1,237 @@
+body {
+  text-align: center;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.first-nav {
+  height: 86px;
+}
+
+.brand-image {
+  height: 45px;
+  width: 45px;
+}
+
+.brand {
+  color: black;
+  font-family: 'Gentium Book Plus', serif;
+  font-size: 25px;
+  position: relative;
+  top: 10px;
+  margin-left: 5px;
+}
+
+.top-right-function {
+  margin-top: 5px;
+}
+
+
+.Contact-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.register-image {
+  margin-right:5px;
+}
+
+.Register-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.login-image {
+  margin-right:5px;
+}
+
+.Login-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.Cart-header {
+  color:black;
+}
+
+.cart-image {
+  margin-right:5px;
+}
+
+hr {
+  border-bottom: 2px solid black;
+}
+
+.confirmation-flow {
+  width: 570px;
+  margin-top:45px;
+  position: relative;
+  left: 36px;
+}
+
+
+.confirmation-check {
+  width: 60px;
+  margin-top: 60px;
+}
+
+.order-confirmed {
+  font-size: 35px;
+  position: relative;
+  top: 43px;
+  margin-left: 30px;
+}
+
+.order-tag {
+  position: relative;
+  right: 5.5px;
+  top: 10px;
+  font-size: 25px;
+  color: #808080;
+}
+
+.order-id {
+  position: absolute;
+  font-size: 25px;
+  color: #808080;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.shipping-item {
+  margin-top: 100px;
+}
+
+.Shipping-tag {
+  font-size: 18px;
+  position: relative;
+  right: 350px;
+}
+
+.Shipping-address {
+  font-size: 18px;
+  color: #808080;
+  position: absolute;
+  left: 550px;
+}
+
+.phone-tag {
+  font-size: 18px;
+  position: relative;
+  right: 412px;
+  top: 6px;
+}
+
+.phone-info {
+  font-size: 18px;
+  color: #808080;
+  position: absolute;
+  left: 551px;
+  margin-top: 7px;
+}
+
+
+.contact-tag {
+  font-size: 18px;
+  position: relative;
+  right: 416px;
+  top: 10px;
+}
+
+.contact-info {
+  font-size: 18px;
+  color: #808080;
+  position: absolute;
+  left: 551px;
+  margin-top: 9px;
+}
+
+.summary-line {
+  width: 1000px;
+  margin-left: 115px;
+  margin-top: 25px;
+}
+
+.order-summary-header {
+  font-size: 18px;
+  position: relative;
+  right: 373px;
+  top: 8px;
+}
+
+.summary-item {
+  margin-top: 70px;
+}
+
+.summary-table {
+  margin-left: 155px;
+  margin-top: 55px;
+}
+
+.summary-img1 {
+  width: 180px;
+}
+
+.summary-description {
+  position: relative;
+  left: 130px;
+  bottom: 50px;
+  font-size: 18px;
+  text-align: left;
+}
+
+.summary-size {
+  color: #808080;
+  font-size:15px;
+}
+
+.summary-number {
+  color: #808080;
+  font-size:15px;
+}
+
+.summary-price {
+  position: absolute;
+  left: 1100px;
+  margin-top: 12px;
+  font-size:18px;
+}
+
+.back-to-home-btn {
+  margin-top: 75px;
+  width: 250px;
+}
+
+.bottom-hr {
+  margin-top: 65px;
+}
+
+.contact1 {
+  color: #808080;
+  margin-bottom: 10px;
+}
+
+.twitter-img {
+  text-decoration: none;
+}
+
+.instagram-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.facebook-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.youtube-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.copyright {
+  margin-top: 30px;
+  font-size: 15px;
+  color: #808080;
+}

@@ -1,0 +1,185 @@
+body {
+  text-align: center;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.first-nav {
+  height: 86px;
+}
+
+.brand-image {
+  height: 45px;
+  width: 45px;
+}
+
+.brand {
+  color: black;
+  font-family: 'Gentium Book Plus', serif;
+  font-size: 25px;
+  position: relative;
+  top: 10px;
+  margin-left: 5px;
+}
+
+.top-right-function {
+  margin-top: 5px;
+}
+
+
+.Contact-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.register-image {
+  margin-right:5px;
+}
+
+.Register-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.login-image {
+  margin-right:5px;
+}
+
+.Login-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.logout-image {
+  margin-right:5px;
+}
+
+.Logout-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.Cart-header {
+  color:black;
+}
+
+.cart-image {
+  margin-right:5px;
+}
+
+hr {
+  border-bottom: 2px solid black;
+}
+
+.product-row {
+  margin-top:65px;
+}
+
+.product-img {
+  height: 350px;
+  width: 350px;
+}
+
+.product-name {
+  font-size:25px;
+  margin-left:108px;
+}
+
+.product-price {
+  text-align: left;
+  margin-left: 110px;
+  margin-top: 20px;
+  color: #73777B;
+}
+
+.purchase-form {
+  text-align: left;
+  margin-left: 110px;
+  margin-top: 45px;
+}
+
+.product-size {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.size {
+  width:302px;
+  height: 35px;
+  text-align: right;
+  font-weight: bold;
+}
+
+input {
+  font-weight: bold;
+}
+
+.quantity-select {
+  margin-left: 57px;
+  margin-top: 30px;
+}
+
+#min {
+  background: white;
+  border-color: #808080;
+}
+
+#add {
+  background: white;
+  border-color: #808080;
+}
+
+#quantity {
+  width: 60px;
+  height:36px;
+  text-align: center;
+}
+
+.submit-btn {
+  margin-left: 55px;
+  margin-top:30px;
+}
+
+.cart-btn {
+  font-weight:bolder;
+}
+
+.buy-btn {
+  font-weight:bolder;
+  width: 116px;
+  margin-left: 15px;
+}
+
+.bottom-hr {
+  margin-top: 65px;
+}
+
+.contact1 {
+  color: #808080;
+  margin-bottom: 10px;
+}
+
+.twitter-img {
+  text-decoration: none;
+}
+
+.instagram-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.facebook-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.youtube-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.copyright {
+  margin-top: 30px;
+  font-size: 15px;
+  color: #808080;
+}

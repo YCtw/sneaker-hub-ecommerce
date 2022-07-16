@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Checkout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="./static/checkout.css" />
+</head>
+
+<body>
+  <section class="top-nav">
+    <nav class="navbar navbar-expand-lg navbar-dark first-nav">
+      <a class="navbar-brand" href="{{url_for('homepage')}}">
+        <img src="./static/sneakers.png" alt="brand-image" width="30" height="24" class="d-inline-block align-text-top brand-image">
+        <span class="brand"><strong>Sneaker Hub</strong></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse top-right-function" id="navbarTogglerDemo01">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('logout', product_id=0)}}"><span class="Logout-header"><img class="logout-image" src="./static/logout.png" alt="logout-image" width="18" height="18"><strong>Logout</strong></span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('cart')}}"><span class="Cart-header"><img class="cart-image" src="./static/shopping-cart.png" alt="cart-image" width="18" height="18"><strong>Cart</strong></span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </section>
+
+  <hr />
+
+  <img class="checkout-flow" src="./static/checkout-flow.png" alt="cart-flow" />
+
+  <section class="checkout-info">
+    <section class="row checkout-row">
+      <div class="col-6 checkout-info">
+        <h3 class="checkout-header"><strong>Checkout Information</strong></h3>
+        {% if direct %}
+        <form method="post" action="/confirmation?direct=Yes" class="checkout-form">
+          {{checkout_form.csrf_token}}
+          {{checkout_form.name(class="name-checkout", placeholder="Name", size=40)}}<br />
+          {%for error in checkout_form.name.errors %}
+          <p class="error-msg"><strong>{{error}}</strong></p>{% endfor %}
+
+          {{checkout_form.phone(class="phone-checkout", placeholder="Phone", size=40)}}<br />
+          {%for error in checkout_form.phone.errors %}
+          <p class="error-msg"><strong>{{error}}</strong></p>{% endfor %}
+
+          {{checkout_form.email(class="email-checkout", placeholder="Email", size=40)}}<br />
+          {%for error in checkout_form.email.errors %}
+          <p class="error-msg"><strong>{{error}}</strong></p>{% endfor %}
+
+          {{checkout_form.address(class="address-checkout", placeholder="Shipping Address", size=40)}}<br />
+          {%for error in checkout_form.address.errors %}
+          <p class="error-msg"><strong>{{error}}</strong></p>{% endfor %}
+
+          <h5 class="billing-header"><strong>Payment</strong></h5>
+
+          <label class="cash-payment"><strong>Cash</strong>
+            <input type="checkbox" id="Cash">
+            <span class="checkmark"></span>
+
+            <br />
+
+            <label class="credit-card-payment"><strong>Credit Card</strong>
+              <input type="checkbox" id="Credit-Card" onclick="cardFunction()">
+              <span class="checkmark"></span>
+            </label>
+
+            <br />
+
+            <div id="credit-form">
+              <strong>{{checkout_form.c_card.card_number.label(class="card_number_label")}}</strong>{{checkout_form.c_card.card_number(class="card_number_input", size=15)}}<br />
+              <strong>{{checkout_form.c_card.card_expired.label(class="card_expired_label")}}</strong>{{checkout_form.c_card.card_expired(class="card_expired_input", placeholder="MM/YY", size=15)}}<br />
+              <strong>{{checkout_form.c_card.card_security.label(class="card_security_label")}}</strong>{{checkout_form.c_card.card_security(class="card_security_input", size=15)}}<br />
+            </div>
+
+            <hr class="checkout-info-hr" />
+
+            <h5 class="message-header"><strong>Leave Message</strong></h5>
+            {{checkout_form.message}}<br />
+
+            <input class="confirm-btn btn btn-dark" type="submit" value="Confirm">
+        </form>
+        {{ckeditor.load()}}
+        {{ckeditor.config(name="message")}}
+        {% else %}
+        <form method="post" action="/confirmation?direct=No" class="checkout-form" >
+          {{checkout_form.csrf_token}}
+          {{checkout_form.name(class="name-checkout", placeholder="Name", size=40)}}<br />
+          {%for error in checkout_form.name.errors %}
+          <p class="error-msg"><strong>{{error}}</strong></p>{% endfor %}
+
+          {{checkout_form.phone(class="phone-checkout", placeholder="Phone", size=40)}}<br />
+          {%for error in checkout_form.phone.errors %}
+          <p class="error-msg"><strong>{{error}}</strong></p>{% endfor %}
+
+          {{checkout_form.email(class="email-checkout", placeholder="Email", size=40)}}<br />
+          {%for error in checkout_form.email.errors %}
+          <p class="error-msg"><strong>{{error}}</strong></p>{% endfor %}
+
+          {{checkout_form.address(class="address-checkout", placeholder="Shipping Address", size=40)}}<br />
+          {%for error in checkout_form.address.errors %}
+          <p class="error-msg"><strong>{{error}}</strong></p>{% endfor %}
+
+          <h5 class="billing-header"><strong>Payment</strong></h5>
+
+          <label class="cash-payment"><strong>Cash</strong>
+            <input type="checkbox" id="Cash">
+            <span class="checkmark"></span>
+
+            <br />
+
+            <label class="credit-card-payment"><strong>Credit Card</strong>
+              <input type="checkbox" id="Credit-Card" onclick="cardFunction()">
+              <span class="checkmark"></span>
+            </label>
+
+            <br />
+
+            <div id="credit-form">
+              <strong>{{checkout_form.c_card.card_number.label(class="card_number_label")}}</strong>{{checkout_form.c_card.card_number(class="card_number_input", size=15)}}<br />
+              <strong>{{checkout_form.c_card.card_expired.label(class="card_expired_label")}}</strong>{{checkout_form.c_card.card_expired(class="card_expired_input", placeholder="MM/YY", size=15)}}<br />
+              <strong>{{checkout_form.c_card.card_security.label(class="card_security_label")}}</strong>{{checkout_form.c_card.card_security(class="card_security_input", size=15)}}<br />
+            </div>
+
+            <hr class="checkout-info-hr" />
+
+            <h5 class="message-header"><strong>Leave Message</strong></h5>
+            {{checkout_form.message}}<br />
+
+            <input class="confirm-btn btn btn-dark" type="submit" value="Confirm">
+        </form>
+        {{ckeditor.load()}}
+        {{ckeditor.config(name="message")}}
+        {% endif %}
+      </div>
+
+
+
+      <div class="col-6 checkout-summary">
+        <h3 class="checkout-summary-header"><strong>Order Summary</strong></h3>
+        {% if direct %}
+        <table class="first-checkout-table">
+          <tr>
+            <td>
+              <img class="checkout-image" src={{direct_purchase_dict["product_image_url"]}} alt="item1-checkout" />
+            </td>
+            <td>
+            <td class="checkout-description">
+              <span class="checkout-item"><strong>{{direct_purchase_dict["product_name"]}}</strong></span><br />
+              <span class="checkout-size"><strong>Size: {{direct_purchase_dict["product_size"]}}</strong></span><br />
+              <span class="checkout-number"><strong>Quantity: {{direct_purchase_dict["count"]}}</strong></span><br />
+              <span class="checkout-price"><strong>${{direct_purchase_dict["product_price"]}}</strong></span>
+            </td>
+          </tr>
+        </table>
+        {% else %}
+        {% for checkout_item in checkout_list: %}
+        <table class="first-checkout-table">
+          <tr>
+            <td>
+              <img class="checkout-image" src={{checkout_item.product_image_url}} alt="item1-checkout" />
+            </td>
+            <td class="checkout-description">
+              <span class="checkout-item"><strong>{{checkout_item.product_name}}</strong></span><br />
+              <span class="checkout-size"><strong>Size: {{checkout_item.product_size}}</strong></span><br />
+              <span class="checkout-number"><strong>Quantity: {{checkout_item.product_count}}</strong></span><br />
+              <span class="checkout-price"><strong>${{checkout_item.product_price}}</strong></span>
+            </td>
+          </tr>
+        </table>
+        {% endfor %}
+        {% endif %}
+        <hr class="checkout-sum-hr" />
+
+        <h3 class="total-summary"><strong>Total</strong></h3>
+
+        <div class="amount-table">
+          <div class="first-row">
+            <span class="item-tag"><strong>Item: </strong></span><span class="item-price"><strong>${{sum_price}}</strong></span>
+          </div>
+          <br />
+          <div class="second-row">
+            <span class="shippment-tag"><strong>Shippment: </strong></span><span class="shippment-price"><strong>$120</strong></span>
+          </div>
+          <hr class="sum-hr" />
+          <div class="sum-row">
+            <span class="checkout-sum-tag"><strong>Sum: </strong></span>
+            <span class="checkout-sum-price"><strong>${{sum_price + 120}}</strong></span>
+          </div>
+
+
+
+        </div>
+      </div>
+
+      <!--For credit card-->
+      <script>
+        function cardFunction() {
+          var x = document.getElementById("credit-form");
+          if (x.style.display === "block") {
+            x.style.display = "none";
+          } else {
+            x.style.display = "block";
+          }
+        }
+      </script>
+
+      <hr class="bottom-hr" />
+
+      <section class="contact-us">
+        <p class="contact1">Contact Us</p>
+        <a class="twitter-img" href="https://twitter.com/home">
+          <img src="./static/twitter.png" alt="twitter-img" width="25" height="25">
+        </a>
+        <a class="instagram-img" href="https://www.instagram.com/">
+          <img src="./static/instagram.png" alt="instagram-img" width="25" height="25">
+        </a>
+        <a class="facebook-img" href="https://www.facebook.com/">
+          <img src="./static/facebook.png" alt="facebook-img" width="25" height="25">
+        </a>
+        <a href="https://youtube.com">
+          <img class="youtube-img" src="./static/youtube.png" alt="youtube-img" width="25" height="25">
+        </a>
+        <p class="copyright">© 2022 Sneaker Hub.</p>
+      </section>
+    </section>
+
+</body>
+
+</html>

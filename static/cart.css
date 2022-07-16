@@ -1,0 +1,247 @@
+body {
+  text-align: center;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.first-nav {
+  height: 86px;
+}
+
+.brand-image {
+  height: 45px;
+  width: 45px;
+}
+
+.brand {
+  color: black;
+  font-family: 'Gentium Book Plus', serif;
+  font-size: 25px;
+  position: relative;
+  top: 10px;
+  margin-left: 5px;
+}
+
+.top-right-function {
+  margin-top: 5px;
+}
+
+
+.Contact-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.register-image {
+  margin-right:5px;
+}
+
+.Register-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.login-image {
+  margin-right:5px;
+}
+
+.Login-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.logout-image {
+  margin-right:5px;
+}
+
+.Logout-header {
+  color:black;
+  margin-right: 15px;
+}
+
+.Cart-header {
+  color:black;
+}
+
+.cart-image {
+  margin-right:5px;
+}
+
+hr {
+  border-bottom: 2px solid black;
+}
+
+.cart-flow {
+  width: 550px;
+  margin-top:35px;
+  position: relative;
+  left: 30px;
+}
+
+.cart-section {
+  margin-top: 50px;
+}
+
+
+.cart-row {
+  position: relative;
+  right: 50px;
+}
+
+.cart-header {
+  text-align: left;
+  margin-left: 50px;
+}
+
+.cart-table {
+  margin-left: 55px;
+  margin-top: 55px;
+}
+
+.cart-img1 {
+  width: 180px;
+}
+
+.cart-description {
+  position: absolute;
+  left: 320px;
+  font-size: 18px;
+  text-align: left;
+}
+
+.cart-size {
+  color: #808080;
+  font-size:15px;
+}
+
+.cart-number {
+  color: #808080;
+  font-size:15px;
+}
+
+.cart-price {
+  position: absolute;
+  left: 700px;
+  font-size:18px;
+}
+
+.delete {
+  width: 20px;
+  height: 20px;
+  margin-top: 5px;
+}
+
+.item-hr {
+  width: 712px;
+  margin-left:55px;
+}
+
+.amount-header {
+  margin-bottom: 45px;
+}
+
+.first-row {
+  font-size: 18px;
+  margin-left: 47px;
+}
+
+.second-row {
+  font-size: 18px;
+  margin-top: 13px;
+}
+
+.sum-row {
+  font-size: 18px;
+  margin-top: 50px;
+}
+
+.item-tag {
+  position: absolute;
+  left: 895px;
+}
+
+.item-price {
+  position: absolute;
+  left: 1100px;
+}
+
+.shippment-price {
+  position: absolute;
+  left: 1100px;
+}
+
+.shippment-tag {
+  position: absolute;
+  left: 895px;
+}
+
+.sum-hr {
+  position: relative;
+  top: 40px;
+  width:290px;
+  margin-left: 270px;
+
+}
+
+.cart-sum-tag {
+  position: absolute;
+  left: 895px;
+}
+
+.cart-sum-price {
+  position: absolute;
+  left: 1100px;
+}
+
+.cart-checkout-btn {
+  width: 300px;
+  margin-left: 250px;
+  margin-top: 50px;
+}
+
+.bottom-hr {
+  margin-top: 65px;
+}
+
+.contact1 {
+  color: #808080;
+  margin-bottom: 10px;
+}
+
+.twitter-img {
+  text-decoration: none;
+}
+
+.instagram-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.facebook-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.youtube-img {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.copyright {
+  margin-top: 30px;
+  font-size: 15px;
+  color: #808080;
+}
+
+.empty-sign {
+  margin-top: 30px;
+  position: relative;
+  left: 33px;
+}
+
+.empty-btn {
+  width: 320px;
+  margin-top: 45px;
+  position: relative;
+  left: 30px;
+}
