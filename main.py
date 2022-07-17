@@ -99,7 +99,7 @@ db.create_all()
 class Orders(db.Model):
     __tablename__ = "orders"
     id = db.Column(db.Integer, primary_key=True)
-    order_id = db.Column(db.Integer, nullable=False)
+    order_id = db.Column(db.Text, nullable=False)
     buyer_id = db.Column(db.Integer, nullable=False)
     buyer_name = db.Column(db.Text, nullable=False)
     buyer_phone = db.Column(db.Text, nullable=False)
@@ -139,16 +139,16 @@ class CheckoutForm(FlaskForm):
     message = CKEditorField()
 
 #Read items to postegresql db with csv - only do once, which is on first publish
-# products_resource = pandas.read_csv("products.csv")
-# name_list = products_resource["name"].tolist()
-# price_list = products_resource["price"].tolist()
-# url_list = products_resource["image_url"].tolist()
-# category_list = products_resource["category"].tolist()
-# brand_list = products_resource["brand"].tolist()
-# for index in range(11):
-#     product_row = newProducts(name=name_list[index], price=price_list[index], image_url=url_list[index], category=category_list[index], brand=brand_list[index])
-#     db.session.add(product_row)
-#     db.session.commit()
+products_resource = pandas.read_csv("products.csv")
+name_list = products_resource["name"].tolist()
+price_list = products_resource["price"].tolist()
+url_list = products_resource["image_url"].tolist()
+category_list = products_resource["category"].tolist()
+brand_list = products_resource["brand"].tolist()
+for index in range(11):
+    product_row = newProducts(name=name_list[index], price=price_list[index], image_url=url_list[index], category=category_list[index], brand=brand_list[index])
+    db.session.add(product_row)
+    db.session.commit()
 
 #Homepage
 @app.route("/", methods=["GET", "POST"])
