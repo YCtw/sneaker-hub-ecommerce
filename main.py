@@ -39,22 +39,9 @@ def load_user(user_id):
     return Members.query.get(int(user_id))
 
 #Database setup
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1")
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///products.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-
-
-#Products TABLE
-# class Products(db.Model):
-#     __tablename__ = "products"
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.Text, nullable=False, unique=True)
-#     price = db.Column(db.Integer, nullable=False)
-#     image_url = db.Column(db.Text, nullable=False)
-#     category = db.Column(db.String(250), nullable=False)
-#     brand = db.Column(db.Text, nullable=False)
-#
-# db.create_all()
 
 #newProducts TABLE - create for heroku postgresql
 class newProducts(db.Model):
@@ -153,6 +140,17 @@ class CheckoutForm(FlaskForm):
 #Homepage
 @app.route("/", methods=["GET", "POST"])
 def homepage():
+    #保險起見，不記錄到上一個direct_purchase的product information
+    global direct_purchase
+    direct_purchase = {
+        "current_user_id": 0,
+        "product_id": 0,
+        "product_name": 0,
+        "product_price": 0,
+        "product_size": 0,
+        "product_count": 0,
+        "product_image_url": 0
+    }
     global current_product_id
     current_product_id = 0
     best_shoes = []
