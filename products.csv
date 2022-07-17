@@ -1,0 +1,12 @@
+id,name,price,image_url,category,brand
+1,"Nike Dunk Low ""Versity Royal""",7899,/static/best1.jfif,best,Nike
+2,"Nike Air Max 97 ""Psychic Blue""",6800,/static/best2.jfif,best,Nike
+3,"Air Jordan 11 Retro ""Emerald Rise""",5190,/static/best3.jfif,best,Jordan
+4,"Air Jordan 4 ""White and Black""",3499,/static/item1.jfif,normal,Jordan
+5,"Nike dunk low ""Orange Blaze""",4500,/static/item2.jfif,normal,Nike
+6,"Air Jordan 3 ""Central Red""",6000,/static/item3.jfif,normal,Jordan
+7,Converse Chuck Taylor White,1980,/static/item4.jfif,normal,Converse
+8,"Nike Dunk High ""Gundam""",3600,/static/item5.jfif,normal,Nike
+9,"Nike Jordan 1 ""Chicago""",5100,/static/item6.jfif,normal,"Nike, Jordan"
+10,"Nike Aix Max 97 ""Sprung Iron Grey""",5100,/static/item7.jfif,normal,Nike
+11,Nike Zoom Air Tempo Next%,5500,/static/item8.jfif,normal,Nike

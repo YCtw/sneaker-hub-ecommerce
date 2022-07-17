@@ -8,6 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user
 from random import randint
 import os
+import pandas
 
 #全域變數，掌握login, register完後回到目前商品, 0是首頁
 current_product_id = 0
@@ -38,7 +39,7 @@ def load_user(user_id):
     return Members.query.get(int(user_id))
 
 #Database setup
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL1')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -46,6 +47,18 @@ db = SQLAlchemy(app)
 #Products TABLE
 class Products(db.Model):
     __tablename__ = "products"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, nullable=False, unique=True)
+    price = db.Column(db.Integer, nullable=False)
+    image_url = db.Column(db.Text, nullable=False)
+    category = db.Column(db.String(250), nullable=False)
+    brand = db.Column(db.Text, nullable=False)
+
+# db.create_all()
+
+#Products TABLE
+class newProducts(db.Model):
+    __tablename__ = "newproducts"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text, nullable=False, unique=True)
     price = db.Column(db.Integer, nullable=False)
@@ -125,6 +138,17 @@ class CheckoutForm(FlaskForm):
     c_card = FormField(CardForm)
     message = CKEditorField()
 
+#Read items to postegresql db with csv - only do once
+products_resource = pandas.read_csv("products.csv")
+name_list = products_resource["name"].tolist()
+price_list = products_resource["price"].tolist()
+url_list = products_resource["image_url"].tolist()
+category_list = products_resource["category"].tolist()
+brand_list = products_resource["brand"].tolist()
+for index in range(11):
+    product_row = newProducts(name=name_list[index], price=price_list[index], image_url=url_list[index], category=category_list[index], brand=brand_list[index])
+    db.session.add(product_row)
+    db.session.commit()
 
 #Homepage
 @app.route("/", methods=["GET", "POST"])
@@ -133,7 +157,7 @@ def homepage():
     current_product_id = 0
     best_shoes = []
     normal_shoes = []
-    all_shoes = db.session.query(Products).all()
+    all_shoes = db.session.query(newProducts).all()
     for shoe in all_shoes:
         if shoe.category == "best":
             best_shoes.append(shoe)
@@ -146,7 +170,7 @@ def homepage():
 def product(product_id):
     global current_product_id
     current_product_id = product_id
-    item = Products.query.get(product_id)
+    item = newProducts.query.get(product_id)
     return render_template("product.html", item=item)
 
 #Login page
@@ -167,7 +191,7 @@ def login():
                     if current_product_id == 0:
                         best_shoes = []
                         normal_shoes = []
-                        all_shoes = db.session.query(Products).all()
+                        all_shoes = db.session.query(newProducts).all()
                         for shoe in all_shoes:
                             if shoe.category == "best":
                                 best_shoes.append(shoe)
@@ -176,7 +200,7 @@ def login():
                         login_user(search_email)
                         return render_template("index.html", best_shoes=best_shoes, normal_shoes=normal_shoes, successfully_login= True)
                     elif current_product_id != 0:
-                        item = Products.query.get(current_product_id)
+                        item = newProducts.query.get(current_product_id)
                         login_user(search_email)
                         return render_template("product.html", item=item)
                 if from_cart == 1:
@@ -218,7 +242,7 @@ def logout():
     if current_product_id == 0:
         return redirect(url_for("homepage"))
     elif current_product_id != 0:
-        item = Products.query.get(current_product_id)
+        item = newProducts.query.get(current_product_id)
         return render_template("product.html", item=item)
 
 #Cart page
@@ -243,7 +267,7 @@ def cart():
                 return render_template("cart.html", cart_list = current_user_id_cart_product, sum_price = sum_cart_price, is_empty=False, last_element=last_element)
     if request.method == "POST":
         if current_user.is_authenticated:
-            item_to_cart = Products.query.get(current_product_id)
+            item_to_cart = newProducts.query.get(current_product_id)
             #search for the same user and same item in the current cart db first
             current_cart_result = Carts.query.filter_by(user_id = current_user.id).all()
             for current_product in current_cart_result:
@@ -283,7 +307,7 @@ def checkout():
     #直接購買
     if request.method == "POST" and real_checkout_post == 'direct':
         if current_user.is_authenticated:
-            item_to_cart = Products.query.get(current_product_id)
+            item_to_cart = newProducts.query.get(current_product_id)
             user_id = current_user.id
             product_name = item_to_cart.name
             product_id = item_to_cart.id
