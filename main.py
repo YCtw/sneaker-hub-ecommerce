@@ -272,7 +272,7 @@ def cart():
             current_cart_result = Carts.query.filter_by(user_id = current_user.id).all()
             for current_product in current_cart_result:
                 if current_product.product_id == current_product_id and current_product.product_size == request.form["size"]:
-                    current_product.product_count = current_product.product_count + int(request.form["numbers"])
+                    current_product.product_count = current_product.product_count + int(request.form["count"])
                     db.session.commit()
                     return redirect(url_for("product", product_id=current_product_id))
             user_id = current_user.id
@@ -281,7 +281,7 @@ def cart():
             product_price = item_to_cart.price
             product_url = item_to_cart.image_url
             product_size = request.form["size"]
-            product_count = request.form["numbers"]
+            product_count = request.form["count"]
             add_to_cart_row = Carts(user_id=user_id, product_id=product_id, product_name=product_name, product_price=product_price, product_size=product_size, product_count=product_count, product_image_url=product_url)
             db.session.add(add_to_cart_row)
             db.session.commit()
@@ -314,7 +314,7 @@ def checkout():
             product_price = item_to_cart.price
             product_url = item_to_cart.image_url
             product_size = request.form["size"]
-            product_count = int(request.form["numbers"])
+            product_count = int(request.form["count"])
             direct_purchase["current_user_id"] = user_id
             direct_purchase["product_id"] = product_id
             direct_purchase["product_name"] = product_name

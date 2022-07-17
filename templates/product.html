@@ -11,30 +11,7 @@
   <link rel="stylesheet" href="/static/product.css">
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-  <!-- Script for quantity -->
-  <script>
-    $(function() {
-      var t = $("#quantity");
-      $("#add").click(function() {
-        t.val(parseInt(t.val()) + 1);
-        $("#min").removeAttr("disabled");
-        setTotal();
-      })
-      $("#min").click(function() {
-        if (parseInt(t.val()) > 1) {
-          t.val(parseInt(t.val()) - 1)
-        } else {
-          $("#min").attr("disabled", "disabled")
-        }
-        setTotal();
-      })
 
-      function setTotal() {
-        $("#total").html((parseInt(t.val()) * 3.95).toFixed(2));
-      }
-      setTotal();
-    })
-  </script>
 </head>
 
 
@@ -99,11 +76,21 @@
               <option value="US12 / 30CM" class="size-tag">US12 / 30CM</option>
             </select>
             <br />
-            <div class="quantity-select">
-              <input id="min" name="" type="button" value="-" />
-              <input id="quantity" name="numbers" type="text" value="1" />
-              <input id="add" name="" type="button" value="+" />
-            </div>
+
+            <label for="count" class="product-count"><strong>Count: </strong></label>
+            <select id="count" class="count" name="count">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+
+            </select>
             <div class="submit-btn">
               <input type="submit" value="Add To Cart" formaction="/cart" class="btn btn-outline-dark cart-btn">
               <input type="submit" value="Buy" formaction="/checkout?purchase=direct" class="btn btn-danger buy-btn">
