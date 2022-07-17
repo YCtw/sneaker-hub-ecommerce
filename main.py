@@ -54,7 +54,7 @@ class Products(db.Model):
     category = db.Column(db.String(250), nullable=False)
     brand = db.Column(db.Text, nullable=False)
 
-# db.create_all()
+db.create_all()
 
 #Products TABLE
 class newProducts(db.Model):
