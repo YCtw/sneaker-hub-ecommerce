@@ -51,6 +51,7 @@ class Products(db.Model):
     price = db.Column(db.Integer, nullable=False)
     image_url = db.Column(db.Text, nullable=False)
     category = db.Column(db.String(250), nullable=False)
+    brand = db.Column(db.Text, nullable=False)
 
 db.create_all()
 
