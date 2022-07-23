@@ -64,13 +64,13 @@
           <h5 class="billing-header"><strong>Payment</strong></h5>
 
           <label class="cash-payment"><strong>Cash</strong>
-            <input type="checkbox" id="Cash">
+            <input name="payment" type="radio" id="Cash" onclick="nocardFunction()">
             <span class="checkmark"></span>
 
             <br />
 
             <label class="credit-card-payment"><strong>Credit Card</strong>
-              <input type="checkbox" id="Credit-Card" onclick="cardFunction()">
+              <input name="payment" type="radio" id="Credit-Card" onclick="cardFunction()">
               <span class="checkmark"></span>
             </label>
 
@@ -113,13 +113,13 @@
           <h5 class="billing-header"><strong>Payment</strong></h5>
 
           <label class="cash-payment"><strong>Cash</strong>
-            <input type="checkbox" id="Cash">
+            <input name="payment" type="radio" id="Cash" onclick="nocardFunction()">
             <span class="checkmark"></span>
 
             <br />
 
             <label class="credit-card-payment"><strong>Credit Card</strong>
-              <input type="checkbox" id="Credit-Card" onclick="cardFunction()">
+              <input name="payment" type="radio" id="Credit-Card" onclick="cardFunction()">
               <span class="checkmark"></span>
             </label>
 
@@ -204,14 +204,18 @@
 
       <!--For credit card-->
       <script>
-        function cardFunction() {
+        function cardFunction()
+        {
           var x = document.getElementById("credit-form");
-          if (x.style.display === "block") {
-            x.style.display = "none";
-          } else {
-            x.style.display = "block";
-          }
+          x.style.display = "block";
+         }
+
+        function nocardFunction()
+        {
+          var x = document.getElementById("credit-form");
+          x.style.display = "none";
         }
+
       </script>
 
       <hr class="bottom-hr" />
