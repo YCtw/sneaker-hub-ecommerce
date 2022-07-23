@@ -11,7 +11,17 @@
   <link rel="stylesheet" href="/static/product.css">
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script>
+    function cart_alert()
+    {
+      alert("Item has been added to cart");
+    }
 
+    function no_cart()
+    {
+      alert("You have to login first");
+    }
+  </script>
 </head>
 
 
@@ -92,7 +102,11 @@
 
             </select>
             <div class="submit-btn">
-              <input type="submit" value="Add To Cart" formaction="/cart" class="btn btn-outline-dark cart-btn">
+              {% if not current_user.is_authenticated: %}
+              <input type="submit" value="Add To Cart" onclick="no_cart()" formaction="/cart" class="btn btn-outline-dark cart-btn">
+              {% else %}
+              <input type="submit" value="Add To Cart" onclick="cart_alert()" formaction="/cart" class="btn btn-outline-dark cart-btn">
+              {% endif %}
               <input type="submit" value="Buy" formaction="/checkout?purchase=direct" class="btn btn-danger buy-btn">
             </div>
           </form>
