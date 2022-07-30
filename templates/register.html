@@ -42,7 +42,7 @@
 
     <form method="POST" action="register" novalidate>
       {{form.csrf_token}}
-      {{form.email(class="email-input", placeholder="Email", size=40)}}<br/>
+      {{form.email(class="email-input", placeholder="Email", size=40, autofocus=True)}}<br/>
       {% if duplicate_email: %}
       <span class="duplicate-email-msg"><strong>This email has already been used.</strong></span><br/>
       {% endif %}

@@ -44,7 +44,7 @@
     {% endif %}
     <form method="POST" action="login" novalidate>
       {{form.csrf_token}}
-      {{form.email(class="email-input", placeholder="Email", size=40)}}<br/>
+      {{form.email(class="email-input", placeholder="Email", size=40, autofocus=True)}}<br/>
       {%for error in form.email.errors %}
       <p class="error-msg"><strong>{{error}}</strong></p>{% endfor %}
       {{form.password(class="password-input", placeholder="Password", size=40)}}<br/>

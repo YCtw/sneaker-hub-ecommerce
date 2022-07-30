@@ -45,7 +45,7 @@
         {% if direct %}
         <form method="post" action="/confirmation?direct=Yes" class="checkout-form">
           {{checkout_form.csrf_token}}
-          {{checkout_form.name(class="name-checkout", placeholder="Name", size=40)}}<br />
+          {{checkout_form.name(class="name-checkout", placeholder="Name", size=40, autofocus=True)}}<br />
           {%for error in checkout_form.name.errors %}
           <p class="error-msg"><strong>{{error}}</strong></p>{% endfor %}
 
@@ -93,7 +93,7 @@
         {% else %}
         <form method="post" action="/confirmation?direct=No" class="checkout-form" >
           {{checkout_form.csrf_token}}
-          {{checkout_form.name(class="name-checkout", placeholder="Name", size=40)}}<br />
+          {{checkout_form.name(class="name-checkout", placeholder="Name", size=40, autofocus=True)}}<br />
           {%for error in checkout_form.name.errors %}
           <p class="error-msg"><strong>{{error}}</strong></p>{% endfor %}
 
