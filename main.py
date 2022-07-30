@@ -39,6 +39,7 @@ def load_user(user_id):
     return Members.query.get(int(user_id))
 
 #Database setup
+# app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///products.db"
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -174,9 +175,12 @@ def product(product_id):
 #Login page
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    global current_product_id
     global from_cart
     login_form = LoginForm()
+    #Post
     if login_form.validate_on_submit():
+        current_product_id = int(current_product_id)
         login_email = login_form.email.data
         login_password = login_form.password.data
         search_email = Members.query.filter_by(email=login_email).first()
@@ -196,10 +200,12 @@ def login():
                             else:
                                 normal_shoes.append(shoe)
                         login_user(search_email)
+                        print("here")
                         return render_template("index.html", best_shoes=best_shoes, normal_shoes=normal_shoes, successfully_login= True)
                     elif current_product_id != 0:
                         item = newProducts.query.get(current_product_id)
                         login_user(search_email)
+                        print("there")
                         return render_template("product.html", item=item)
                 if from_cart == 1:
                     login_user(search_email)
@@ -207,12 +213,21 @@ def login():
                     return redirect(url_for("cart"))
             if login_password != correct_password:
                 return render_template("login.html", form=login_form, fail_login = True)
+
+    #Get
+    true_product_id = request.args.get("product_id")# From homepage or From product page
+    if true_product_id != None:
+        true_product_id = int(true_product_id)
+    if true_product_id == 0:
+        current_product_id = 0
     return render_template("login.html", form=login_form)
 
 #Register page
 @app.route("/register", methods=["GET","POST"])
 def register():
+    global current_product_id
     register_form = RegisterForm()
+    #Post
     if register_form.validate_on_submit():
         email = register_form.email.data
         password =register_form.password.data
@@ -223,12 +238,17 @@ def register():
         address = register_form.address.data
         duplicate_email = Members.query.filter_by(email=email).first()
         if duplicate_email != None:
+
             return render_template("register.html", form=register_form, duplicate_email=True)
         else:
             new_register = Members(first_name = first_name, last_name=last_name, email=email, password=password, birth=birth, phone=phone, address=address)
             db.session.add(new_register)
             db.session.commit()
             return redirect(url_for("login"))
+
+    #Get
+    register_product_id = int(request.args.get("product_id"))
+    current_product_id = register_product_id
     return render_template("register.html", form=register_form)
 
 #Logout
@@ -246,6 +266,7 @@ def logout():
 #Cart page
 @app.route("/cart", methods=["GET","POST"])
 def cart():
+    global current_product_id
     global from_cart
     #From cart or from register, login
     if request.method == "GET":
@@ -300,6 +321,7 @@ def delete():
 #Checkout page
 @app.route("/checkout", methods=["GET", "POST"])
 def checkout():
+    global current_product_id
     checkout_form = CheckoutForm()
     real_checkout_post = request.args.get("purchase")
     #直接購買
