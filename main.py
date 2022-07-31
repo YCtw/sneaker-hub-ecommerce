@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, FormField
 from flask_ckeditor import CKEditor, CKEditorField
@@ -10,20 +10,20 @@ from random import randint
 import os
 import pandas
 
-#全域變數，掌握login, register完後回到目前商品, 0是首頁
-current_product_id = 0
-#全域變數，掌握from_cart來的login, 0是不是來自cart
-from_cart = 0
-#全域變數，存下直接購買之item，離開checkout後重置
-direct_purchase = {
-    "current_user_id":0,
-    "product_id":0,
-    "product_name":0,
-    "product_price":0,
-    "product_size":0,
-    "product_count":0,
-    "product_image_url":0
-}
+# #全域變數，掌握login, register完後回到目前商品, 0是首頁
+# current_product_id = 0
+# #全域變數，掌握from_cart來的login, 0是不是來自cart
+# from_cart = 0
+# #全域變數，存下直接購買之item，離開checkout後重置
+# direct_purchase = {
+#     "current_user_id":0,
+#     "product_id":0,
+#     "product_name":0,
+#     "product_price":0,
+#     "product_size":0,
+#     "product_count":0,
+#     "product_image_url":0
+# }
 
 # Basic setup
 app = Flask(__name__)
@@ -97,6 +97,21 @@ class Orders(db.Model):
 
 db.create_all()
 
+#Order Table - Confirmation, contain all orders' info
+class Directs(db.Model):
+    __tablename__ = "directs"
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, nullable=False)
+    product_id = db.Column(db.Integer, nullable=False)
+    product_name = db.Column(db.Text, nullable=False)
+    product_price = db.Column(db.Text, nullable=False)
+    product_size = db.Column(db.Text, nullable=False)
+    product_count = db.Column(db.Integer, nullable=False)
+    product_image_url = db.Column(db.Text, nullable=False)
+    order_status = db.Column(db.Text, nullable=False)
+
+db.create_all()
+
 #Bulding form for login
 class LoginForm(FlaskForm):
     email = StringField(label="email", validators=[Email(message="Invalid email address"), DataRequired()] )
@@ -141,19 +156,9 @@ class CheckoutForm(FlaskForm):
 #Homepage
 @app.route("/", methods=["GET", "POST"])
 def homepage():
-    #保險起見，不記錄到上一個direct_purchase的product information
-    global direct_purchase
-    direct_purchase = {
-        "current_user_id": 0,
-        "product_id": 0,
-        "product_name": 0,
-        "product_price": 0,
-        "product_size": 0,
-        "product_count": 0,
-        "product_image_url": 0
-    }
-    global current_product_id
-    current_product_id = 0
+    #Store individual user's current product id and from_cart in session cookie
+    session["current_product_id"] = 0
+    session["from_cart"] = 0
     best_shoes = []
     normal_shoes = []
     all_shoes = db.session.query(newProducts).all()
@@ -167,20 +172,22 @@ def homepage():
 #Product page
 @app.route("/product/<int:product_id>", methods=["GET", "POST"])
 def product(product_id):
-    global current_product_id
-    current_product_id = product_id
+    #Changing the product_id store in session to be the product user is currently looking at
+    session["current_product_id"] = product_id
+
     item = newProducts.query.get(product_id)
     return render_template("product.html", item=item)
 
 #Login page
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    global current_product_id
-    global from_cart
+    #Getting the indicator that if user is from cart
+    from_cart = session.get("from_cart")
     login_form = LoginForm()
     #Post
     if login_form.validate_on_submit():
-        current_product_id = int(current_product_id)
+        #Getting the current_product_id from session to see where are users come in from
+        current_product_id = session.get("current_product_id")
         login_email = login_form.email.data
         login_password = login_form.password.data
         search_email = Members.query.filter_by(email=login_email).first()
@@ -200,16 +207,14 @@ def login():
                             else:
                                 normal_shoes.append(shoe)
                         login_user(search_email)
-                        print("here")
                         return render_template("index.html", best_shoes=best_shoes, normal_shoes=normal_shoes, successfully_login= True)
                     elif current_product_id != 0:
                         item = newProducts.query.get(current_product_id)
                         login_user(search_email)
-                        print("there")
                         return render_template("product.html", item=item)
                 if from_cart == 1:
                     login_user(search_email)
-                    from_cart = 0 #把from_cart還原成default 0
+                    session["from_cart"] = 0 #把session裡面的from_cart還原成0
                     return redirect(url_for("cart"))
             if login_password != correct_password:
                 return render_template("login.html", form=login_form, fail_login = True)
@@ -219,13 +224,12 @@ def login():
     if true_product_id != None:
         true_product_id = int(true_product_id)
     if true_product_id == 0:
-        current_product_id = 0
+        session["current_product_id"] = 0
     return render_template("login.html", form=login_form)
 
 #Register page
 @app.route("/register", methods=["GET","POST"])
 def register():
-    global current_product_id
     register_form = RegisterForm()
     #Post
     if register_form.validate_on_submit():
@@ -238,7 +242,6 @@ def register():
         address = register_form.address.data
         duplicate_email = Members.query.filter_by(email=email).first()
         if duplicate_email != None:
-
             return render_template("register.html", form=register_form, duplicate_email=True)
         else:
             new_register = Members(first_name = first_name, last_name=last_name, email=email, password=password, birth=birth, phone=phone, address=address)
@@ -247,15 +250,12 @@ def register():
             return redirect(url_for("login"))
 
     #Get
-    register_product_id = int(request.args.get("product_id"))
-    current_product_id = register_product_id
     return render_template("register.html", form=register_form)
 
 #Logout
 @app.route("/logout", methods=["GET"])
 def logout():
-    current_product_id = request.args.get("product_id")
-    current_product_id = int(current_product_id)
+    current_product_id = session.get("current_product_id")
     logout_user()
     if current_product_id == 0:
         return redirect(url_for("homepage"))
@@ -266,12 +266,12 @@ def logout():
 #Cart page
 @app.route("/cart", methods=["GET","POST"])
 def cart():
-    global current_product_id
-    global from_cart
+    current_product_id = session.get("current_product_id")
+    from_cart = session.get("from_cart")
     #From cart or from register, login
     if request.method == "GET":
         if current_user.is_authenticated == False:
-            from_cart = 1
+            session["from_cart"] = 1
             return redirect(url_for("login"))
         elif current_user.is_authenticated:
             current_user_id = current_user.id
@@ -321,7 +321,7 @@ def delete():
 #Checkout page
 @app.route("/checkout", methods=["GET", "POST"])
 def checkout():
-    global current_product_id
+    current_product_id = session.get("current_product_id")
     checkout_form = CheckoutForm()
     real_checkout_post = request.args.get("purchase")
     #直接購買
@@ -335,15 +335,22 @@ def checkout():
             product_url = item_to_cart.image_url
             product_size = request.form["size"]
             product_count = int(request.form["count"])
-            direct_purchase["current_user_id"] = user_id
-            direct_purchase["product_id"] = product_id
-            direct_purchase["product_name"] = product_name
-            direct_purchase["product_price"] = product_price
-            direct_purchase["product_size"] = product_size
-            direct_purchase["product_count"] = product_count
-            direct_purchase["product_image_url"] = product_url
+
+            #Check if this user has previous item in "progress", turn to not done
+            previous_direct_item = Directs.query.filter_by(user_id=user_id, order_status="progress").all()
+            if previous_direct_item != None:
+                for p_item in previous_direct_item:
+                    p_item.order_status = "not done"
+                    db.session.commit()
+
+            #Adding direct purchase to database, with status "progress"
+            new_direct_purchase = Directs(user_id=user_id, product_id=product_id, product_name=product_name, product_price=product_price, product_size=product_size, product_count=product_count, product_image_url=product_url, order_status="progress")
+            db.session.add(new_direct_purchase)
+            db.session.commit()
+
+            direct_item = Directs.query.filter_by(user_id=user_id, order_status="progress").first()
             sum_price = product_price * product_count
-            return render_template("checkout.html", checkout_form=checkout_form, direct_purchase_dict=direct_purchase, direct=True, sum_price=sum_price)
+            return render_template("checkout.html", checkout_form=checkout_form, direct_item=direct_item, direct=True, sum_price=sum_price)
         else:
             return redirect(url_for("login"))
     #購物車結帳
@@ -358,6 +365,8 @@ def checkout():
 #Confirmation page
 @app.route("/confirmation", methods=["GET","POST"])
 def confirmation():
+    direct_confirm_dict = session.get("direct_purchase")
+    print(direct_confirm_dict)
     checkout_form = CheckoutForm()
     from_direct = request.args.get("direct")
     if request.method == "POST" and from_direct == "No":
@@ -413,9 +422,14 @@ def confirmation():
         db.session.add(new_orders)
         db.session.commit()
         new_orders_info = Orders.query.filter_by(order_id=order_name).first()
-        direct_confirm_dict = direct_purchase
-        direct_sum = direct_purchase["product_price"]*direct_purchase["product_count"]
-        return render_template("confirmation.html", direct_confirm_dict=direct_confirm_dict,  direct_sum=direct_sum, confirm_order=new_orders_info, direct_dict=direct_purchase, from_direct=direct_condition)
+
+        direct_item = Directs.query.filter_by(user_id=current_user.id, order_status="progress").first()
+        direct_sum = direct_item.product_price*direct_item.product_count
+
+        #Changing the status in direct db to finish so it won't get include in next visit
+        direct_item.order_status = "finish"
+        db.session.commit()
+        return render_template("confirmation.html", direct_item=direct_item,  direct_sum=direct_sum, confirm_order=new_orders_info, from_direct=direct_condition)
 
 if __name__ == "__main__":
     app.run(debug=True)

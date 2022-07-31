@@ -150,14 +150,14 @@
         <table class="first-checkout-table">
           <tr>
             <td>
-              <img class="checkout-image" src={{direct_purchase_dict["product_image_url"]}} alt="item1-checkout" />
+              <img class="checkout-image" src={{direct_item.product_image_url}} alt="item1-checkout" />
             </td>
             <td>
             <td class="checkout-description">
-              <span class="checkout-item"><strong>{{direct_purchase_dict["product_name"]}}</strong></span><br />
-              <span class="checkout-size"><strong>Size: {{direct_purchase_dict["product_size"]}}</strong></span><br />
-              <span class="checkout-number"><strong>Quantity: {{direct_purchase_dict["product_count"]}}</strong></span><br />
-              <span class="checkout-price"><strong>${{direct_purchase_dict["product_price"]}}</strong></span>
+              <span class="checkout-item"><strong>{{direct_item.product_name}}</strong></span><br />
+              <span class="checkout-size"><strong>Size: {{direct_item.product_size}}</strong></span><br />
+              <span class="checkout-number"><strong>Quantity: {{direct_item.product_count}}</strong></span><br />
+              <span class="checkout-price"><strong>${{direct_item.product_price}}</strong></span>
             </td>
           </tr>
         </table>
