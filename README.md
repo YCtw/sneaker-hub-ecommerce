@@ -6,3 +6,11 @@ Sneaker Hub e-commerce
 #### Description:  This website simulate e-commerce website with below html parts.
 ####
 #### (Homepage)
+#### Render all shoes
+#### (Register)
+#### (Login)
+#### (Product)
+#### (Cart)
+#### (Checkout)
+#### (Confirmation)
+
