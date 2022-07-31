@@ -21,5 +21,5 @@ Sneaker Hub e-commerce
 #### ->Confirm the order detail and information.
 
 
-#### This is more like a simple version/prototype for e-commerce business, still lots of things can be improve(eg. adding more categories and enable brand categories tab, adding order history or user info tabs, adding validation for visa credit card...) 
+#### This is more like a simple version/prototype for e-commerce business, still lots of features can be improve(eg. adding more categories and enable brand categories tab, adding order history or user info tabs, adding validation for visa credit card...) 
 
