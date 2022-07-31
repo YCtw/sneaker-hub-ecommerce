@@ -10,20 +10,6 @@ from random import randint
 import os
 import pandas
 
-# #全域變數，掌握login, register完後回到目前商品, 0是首頁
-# current_product_id = 0
-# #全域變數，掌握from_cart來的login, 0是不是來自cart
-# from_cart = 0
-# #全域變數，存下直接購買之item，離開checkout後重置
-# direct_purchase = {
-#     "current_user_id":0,
-#     "product_id":0,
-#     "product_name":0,
-#     "product_price":0,
-#     "product_size":0,
-#     "product_count":0,
-#     "product_image_url":0
-# }
 
 # Basic setup
 app = Flask(__name__)
