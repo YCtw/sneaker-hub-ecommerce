@@ -83,7 +83,7 @@ class Orders(db.Model):
 
 db.create_all()
 
-#Order Table - Confirmation, contain all orders' info
+#Direct Table - For direct purchase - not via cart checkout 
 class Directs(db.Model):
     __tablename__ = "directs"
     id = db.Column(db.Integer, primary_key=True)
