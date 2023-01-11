@@ -83,7 +83,7 @@ class Orders(db.Model):
 
 db.create_all()
 
-#Direct Table - For direct purchase - not via cart checkout 
+#Direct Table - For direct purchase - not via cart checkout
 class Directs(db.Model):
     __tablename__ = "directs"
     id = db.Column(db.Integer, primary_key=True)
@@ -322,11 +322,17 @@ def checkout():
             product_size = request.form["size"]
             product_count = int(request.form["count"])
 
-            #Check if this user has previous item in "progress", turn to not done
-            previous_direct_item = Directs.query.filter_by(user_id=user_id, order_status="progress").all()
-            if previous_direct_item != None:
-                for p_item in previous_direct_item:
-                    p_item.order_status = "not done"
+            #Check user's previous progress/finish direct item, just delete it
+            previous_direct_finish_item = Directs.query.filter_by(user_id=user_id, order_status="finish").all()
+            previous_direct_progress_item = Directs.query.filter_by(user_id=user_id, order_status="progress").all()
+            if previous_direct_finish_item != None:
+                for p_item in previous_direct_finish_item:
+                    print(p_item.product_name)
+                    db.session.delete(p_item)
+                    db.session.commit()
+            if previous_direct_progress_item != None:
+                for d_item in previous_direct_progress_item:
+                    db.session.delete(d_item)
                     db.session.commit()
 
             #Adding direct purchase to database, with status "progress"
@@ -351,8 +357,8 @@ def checkout():
 #Confirmation page
 @app.route("/confirmation", methods=["GET","POST"])
 def confirmation():
-    direct_confirm_dict = session.get("direct_purchase")
-    print(direct_confirm_dict)
+    # direct_confirm_dict = session.get("direct_purchase")
+    # print(direct_confirm_dict)
     checkout_form = CheckoutForm()
     from_direct = request.args.get("direct")
     if request.method == "POST" and from_direct == "No":
