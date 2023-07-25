@@ -1,6 +1,8 @@
 # sneaker-hub-ecommerce
 #### Website Link:  https://sneakerhubv2.herokuapp.com/<br />
 #### Video Demo:  https://youtu.be/Jhv2r2tjgoU
+  
+<br>
 
 :boot: Description:  
 This website simulate e-commerce website with below html parts.
@@ -12,6 +14,8 @@ This website simulate e-commerce website with below html parts.
 - Cart: Let user to check their cart items, able delete shoes they don't want.
 - Checkout: Fill in checkout form and proceed to finish the purchase.
 - Confirmation: Confirm the order detail and information.
+  
+<br>
 
 :boot: This is more like a simple version/prototype for e-commerce business, still lots of features can be improve(eg. adding more categories and enable brand categories tab, adding order history or user info tabs, adding validation for visa credit card...) 
 
